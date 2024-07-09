@@ -3,8 +3,8 @@ import bank_account
 
 
 class TestBankAccount(unittest.TestCase):
-    def setUp(self): # set up runs before every test, existing in stack memory (as opposed to heap)
-        self.bank = bank_account.bank("Kate", 123)
+    def setUp(self): # set up runs before every test
+        self.bank = bank_account.bank("Kate", 123) # self makes it exist in stack memory (as opposed to heap)
    
     def test_creation(self):
         self.assertEqual(self.bank.balance, 0)
