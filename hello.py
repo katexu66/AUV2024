@@ -3,7 +3,8 @@ import numpy as np
 
 def hello():
     print("Hello, world!")
-    return("Hello, world!")
+    return "Hello, world!"
+
 
 def add(a, b):
     return a + b
@@ -19,7 +20,7 @@ def mul(a, b):
 
 def div(a, b):
     if b == 0:
-        raise ValueError("Can't divide by zero!")
+        return "Can't divide by zero!"
     return a / b
 
 

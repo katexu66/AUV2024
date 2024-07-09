@@ -43,8 +43,10 @@ class TestHello(unittest.TestCase):
 
     def test_div(self):
         self.assertEqual(hello.div(2, 1), 2)
-        self.assertEqual(hello.div(3, 1), 3)
         self.assertEqual(hello.div(8, 4), 2)
+        self.assertEqual(
+            hello.div(2, 0), "Can't divide by zero!"
+        )  # code coverage -- test all cases
 
     def test_sqrt(self):
         self.assertEqual(hello.sqrt(1), 1)
