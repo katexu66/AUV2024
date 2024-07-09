@@ -3,29 +3,31 @@ import bank_account
 
 
 class TestBankAccount(unittest.TestCase):
+    def setUp(self): # set up runs before every test, existing in stack memory (as opposed to heap)
+        self.bank = bank_account.bank("Kate", 123)
+   
     def test_creation(self):
-        bank = bank_account.bank("Kate", 123)
-        self.assertEqual(bank.balance, 0)
-        self.assertEqual(bank.name, "Kate")
-        self.assertEqual(bank.accountNumber, 123)
+        self.assertEqual(self.bank.balance, 0)
+        self.assertEqual(self.bank.name, "Kate")
+        self.assertEqual(self.bank.accountNumber, 123)
 
     def test_withdraw(self):
-        bank = bank_account.bank("Kate", 123)
-        bank.deposit(150)
-        bank.withdraw(100)
-        self.assertEqual(bank.balance, 50)
-        self.assertEqual(bank.name, "Kate")
-        self.assertEqual(bank.accountNumber, 123)
+        self.bank.deposit(150)
+        self.bank.withdraw(100)
+        self.assertEqual(self.bank.balance, 50)
+        self.assertEqual(self.bank.name, "Kate")
+        self.assertEqual(self.bank.accountNumber, 123)
+        self.assertEqual(self.bank.withdraw(-50), "Cannot withdraw negative amount from bank account.")
+        self.assertEqual(self.bank.withdraw(55), "Cannot withdraw more than your current balance.")
 
     def test_deposit(self):
-        bank = bank_account.bank("Kate", 123)
-        bank.deposit(100)
-        self.assertEqual(bank.balance, 100)
-        self.assertEqual(bank.name, "Kate")
-        self.assertEqual(bank.accountNumber, 123)
+        self.bank.deposit(100)
+        self.assertEqual(self.bank.balance, 100)
+        self.assertEqual(self.bank.name, "Kate")
+        self.assertEqual(self.bank.accountNumber, 123)
+        self.assertEqual(self.bank.deposit(-50), "Cannot deposit negative amount from bank account.")
 
     def test_current_balance(self):
-        bank = bank_account.bank("Kate", 123)
-        self.assertEqual(bank.current_balance(), "Current balance: 0")
-        bank.deposit(20)
-        self.assertEqual(bank.current_balance(), "Current balance: 20")
+        self.assertEqual(self.bank.current_balance(), "Current balance: 0")
+        self.bank.deposit(20)
+        self.assertEqual(self.bank.current_balance(), "Current balance: 20")

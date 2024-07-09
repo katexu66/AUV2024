@@ -13,12 +13,20 @@ class bank:
         self.accountNumber = accountNumber
 
     def withdraw(self, amount):
-        self.balance = self.balance - amount
-        return
+        if amount < 0:
+            return "Cannot withdraw negative amount from bank account."
+        elif amount > self.balance:
+            return "Cannot withdraw more than your current balance."
+        else:
+            self.balance = self.balance - amount
+            return
 
     def deposit(self, amount):
-        self.balance = self.balance + amount
-        return
+        if amount < 0:
+            return "Cannot deposit negative amount from bank account."
+        else:
+            self.balance = self.balance + amount
+            return
 
     def current_balance(self):
         print("Current balance: " + str(self.balance))
